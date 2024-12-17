@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./TaskForm.css";
 import Tag from "./Tag";
 
-const TaskForm = () => {
+const TaskForm = ({setTasks}) => {
   const [taskData, setTaskData] = useState({
     task: "",
     status: "todo",
@@ -26,8 +26,6 @@ const TaskForm = () => {
     }
   };
 
-  console.log(taskData.tags);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -39,6 +37,9 @@ const TaskForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents page reload on form submission
     console.log(taskData);
+    setTasks(prev => {
+        return [...prev, taskData]
+    })
   };
 
   return (
